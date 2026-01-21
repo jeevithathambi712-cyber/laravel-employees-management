@@ -98,7 +98,7 @@
                     alert('Company deleted successfully');
                 },
                 error: function() {
-                    alert('Delete failed');
+                    // alert('Delete failed');
                 }
             });
         });

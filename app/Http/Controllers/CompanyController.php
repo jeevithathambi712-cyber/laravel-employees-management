@@ -100,10 +100,20 @@ class CompanyController extends Controller
      */
     public function destroy(string $id)
     {
-        Company::findOrFail($id)->delete();
+        $company = Company::find($id);
+
+        if (!$company) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Company not found'
+            ], 404);
+        }
+
+        $company->delete();
 
         return response()->json([
-            'success' => true
+            'success' => true,
+            'message' => 'Company deleted successfully'
         ]);
     }
 }

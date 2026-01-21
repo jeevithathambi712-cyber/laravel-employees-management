@@ -48,5 +48,36 @@
         @endforeach
     </tbody>
 </table>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(document).on('click', '.deleteCompany', function () {
+    let companyId = $(this).data('id');
+
+    if (!confirm('Are you sure?')) return;
+
+    $.ajax({
+        url: "{{ url('companies') }}/" + companyId,
+        type: "DELETE",
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (res) {
+            if (res.success) {
+                $('#row-' + companyId).remove();
+                alert(res.message);
+            } else {
+                // alert('Delete failed');
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr.responseText);
+            // alert('Delete failed');
+        }
+    });
+});
+</script>
+
+
 
 {{ $companies->links() }}

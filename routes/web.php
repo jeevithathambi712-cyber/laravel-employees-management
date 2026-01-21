@@ -18,13 +18,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('companies', CompanyController::class);
 
-    // AJAX reload route
     Route::get('companies-list', [CompanyController::class, 'list'])
         ->name('companies.list');
+
+    Route::resource('employees', EmployeeController::class);
+    Route::get('employees-list', [EmployeeController::class, 'list'])
+        ->name('employees.list');
 });
-Route::resource('employees', EmployeeController::class);
-Route::get('employees-list', [EmployeeController::class, 'list'])
-    ->name('employees.list');
+
 
 Auth::routes();
 
