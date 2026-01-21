@@ -67,12 +67,10 @@ $(document).on('click', '.deleteCompany', function () {
                 $('#row-' + companyId).remove();
                 alert(res.message);
             } else {
-                // alert('Delete failed');
             }
         },
         error: function (xhr) {
             console.log(xhr.responseText);
-            // alert('Delete failed');
         }
     });
 });
